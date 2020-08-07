@@ -2,10 +2,10 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import {LinksPage} from './pages/LinksPage'
 import {AuthPage} from './pages/AuthPage'
-import {DetailPage} from './pages/DetailPage'
+import {SearchPage} from './pages/SearchPage'
 import {CreatePage} from './pages/CreatePage'
 import {MainPage} from './pages/MainPage'
-export const UseRoutes = (isAuthenticated, isAdmin = false) => {
+export const UseRoutes = (isAuthenticated, isAdmin = true) => {
     if(isAuthenticated && !isAdmin) {
         return (
             <Switch>
@@ -15,8 +15,8 @@ export const UseRoutes = (isAuthenticated, isAdmin = false) => {
                 <Route path = '/links' exact>
                     <LinksPage />
                 </Route>
-                <Route path = '/detail' exact>
-                    <DetailPage />
+                <Route path = '/search' exact>
+                    <SearchPage />
                 </Route>
                 <Redirect to='/' />
             </Switch>
@@ -34,8 +34,8 @@ export const UseRoutes = (isAuthenticated, isAdmin = false) => {
                 <Route path = '/create' exact>
                     <CreatePage />
                 </Route>
-                <Route path = '/detail' exact>
-                    <DetailPage />
+                <Route path = '/search' exact>
+                    <SearchPage />
                 </Route>
                 <Redirect to='/' />
             </Switch>

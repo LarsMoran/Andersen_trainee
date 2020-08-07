@@ -9,7 +9,7 @@ export const BookCard = ({ books }) => {
                 <h2 className="header">{book.name}</h2>
                 <div className="card horizontal">
                   <div className="card-image">
-                    <img src={`img/${book.img}`} alt='Nothing' />
+                    <img src={`img/${book.img}`} alt='Nothing' style={{width: '200px', height: '300px'}}/>
                   </div>
                   <div className="card-stacked">
                     <div className="card-content">

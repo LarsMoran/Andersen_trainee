@@ -22,6 +22,7 @@ export const AuthPage = () => {
     
     const formHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value })
+        console.log(form)
     }
 
     const registerHandler = async () => {
@@ -37,7 +38,6 @@ export const AuthPage = () => {
             const data = await request('/auth/login', 'POST', {...form})
             auth.login(data.token, data.userEmail)
             console.log(data.userEmail)
-
         }
         catch(e){}
     }
@@ -52,7 +52,7 @@ export const AuthPage = () => {
                     <div>
                         <div className="input-field">
                             <input placeholder="Введите Email"
-                            id="first_name"
+                            id="email"
                             type="text"
                             name='email'
                             onChange={formHandler}
