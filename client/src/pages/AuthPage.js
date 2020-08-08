@@ -33,11 +33,12 @@ export const AuthPage = () => {
         catch(e) {}
     }
 
+
     const loginHandler = async () => {
         try{
             const data = await request('/auth/login', 'POST', {...form})
             auth.login(data.token, data.userEmail)
-            console.log(data.userEmail)
+            console.log(form)
         }
         catch(e){}
     }

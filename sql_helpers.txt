@@ -1,0 +1,5 @@
+SELECT books.name, shop_name, quantity 
+FROM book.book_filter
+LEFT JOIN book.books ON book.books.id = book_id
+LEFT JOIN book.shops ON shop_name = shops.name
+WHERE book.shops.name = 'BookShop1'

@@ -13,12 +13,32 @@ router.get('/', async(req, res) => {
     catch(e) {console.log(e)}
 })
 
-router.get('/:name', async(req, res) => {
+router.get(`/:name/:shop`, async(req, res) => {
     try {
-        const name = req.body
-        const result = await db.query(`SELECT * FROM book.books WHERE name='${name}'`, {
+        const name = req.params.name
+        const shop = req.params.shop
+        if(shop === 'none') {
+            const result = await db.query(`SELECT * FROM book.books WHERE name SIMILAR TO '%${name}%'`, {
             type: QueryTypes.SELECT
         })
+        return res.json(result)
+        }
+        
+        const result = await db.query(
+            `SELECT books.name,
+            books.id,
+            books.description,
+            books.prequel,
+            books.sequel,
+            books.img
+            FROM book.books
+            RIGHT JOIN book.book_filter ON books.id=book_filter.book_id
+            RIGHT JOIN book.shops ON book.shops.name=book_filter.shop_name
+            WHERE books.name SIMILAR TO '%${name}%'
+            AND book.shops.name = '${shop}'`, {
+            type: QueryTypes.SELECT
+        })
+        console.log(result)
         res.json(result)
     }
     catch(e) {console.log(e)}
