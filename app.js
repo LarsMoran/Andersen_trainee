@@ -6,9 +6,10 @@ const db = require('./config/db')
 const books = require('./models/Books')
 const shops = require('./models/Shops')
 
+
 db.authenticate()
-.then(() => console.log('db connected'))
-.catch((e) => console.log(`db error ${e}`))
+  .then(() => console.log('db connected'))
+  .catch((e) => console.log(`db error ${e}`))
 
 const app = express()
 
@@ -19,13 +20,13 @@ const PORT = config.get('port')
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
-    res.sendStatus(200)
+  res.sendStatus(200)
 })
-
-app.use('/books', require('./routes/books'))
 
 app.use('/auth', require('./routes/auth'))
 
-app.use('/links', require('./routes/link'))
+app.use('/books', require('./routes/books'))
 
-app.listen(PORT, (req,res) => console.log('Server has been started'))
+// app.use('/links', require('./routes/link'))
+
+app.listen(PORT, (req, res) => console.log('Server has been started'))
